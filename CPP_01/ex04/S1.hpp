@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 12:30:55 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/02 13:40:30 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/11/02 15:45:17 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ class S1
 {
 	std::string str;
 	public:
-	S1(std::string s)
-	{
-		str = s;
-	}
+	S1(std::string s);
 	std::string getS1();
 	std::string setNew(S2 c);
 	~S1();

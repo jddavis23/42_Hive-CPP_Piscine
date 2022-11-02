@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   S2.hpp                                             :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 12:34:36 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/02 15:44:05 by jdavis           ###   ########.fr       */
+/*   Created: 2022/11/02 16:35:07 by jdavis            #+#    #+#             */
+/*   Updated: 2022/11/02 17:40:02 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S2_HPP
-#define S2_HPP
+#ifndef HARL_HPP
+#define HARL_HPP
 
 #include <iostream>
 #include <string>
 
-class S2
+class Harl
 {
-	std::string str;
+	private:
+	void debug(void);
+	void info(void);
+	void warning(void);
+	void error(void);
 	public:
-	S2(std::string s);
-	std::string getS2();
-	~S2();
+	void    complain( std::string level );
+	~Harl();
 };
 
 #endif
