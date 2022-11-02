@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   S2.hpp                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 11:05:02 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/02 12:56:23 by jdavis           ###   ########.fr       */
+/*   Created: 2022/11/02 12:34:36 by jdavis            #+#    #+#             */
+/*   Updated: 2022/11/02 13:41:18 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#ifndef S2_HPP
+#define S2_HPP
 
-HumanA::HumanA(std::string nm, Weapon &w)
+#include <iostream>
+#include <string>
+#include "S1.hpp"
+
+class S2
 {
-	name = nm;
-	wep = &w;
+	std::string str;
+	public:
+	S2(std::string s);
+	std::string getS2();
+	~S2();
 };
 
-void	HumanA::attack(void)
-{
-	std::string tmp;
-
-	tmp = (wep)->getType();
-	std::cout << name << " attacks with their " << tmp << "\n";
-};
-
-HumanA::~HumanA()
-{
-};
+#endif
