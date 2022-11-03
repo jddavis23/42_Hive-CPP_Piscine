@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:11:13 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/03 13:13:37 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/11/03 15:53:16 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,14 @@ Fixed::Fixed()
 Fixed::Fixed(const Fixed &a)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	num = a.num;
+	*this = a;
+	return ;
 };
 
 Fixed & Fixed::operator = (const Fixed &a)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &a)
-	{
-		num = a.num;
-	}
+	this->num = a.getRawBits();
 	return *this;
 };
 
@@ -41,38 +39,38 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (num);
 };
 
 void Fixed::setRawBits( int const raw )
 {
-	std::cout << "setRawBits member function called" << std::endl;
 	num = raw;
 };
 
 float Fixed::toFloat( void ) const
 {
-	return (num);
+	return (num / 256.0);
 };
 
 int Fixed::toInt( void ) const
 {
-	return (num);
+	return (num / 256);
 };
 
 Fixed::Fixed(const int a)
 {
-	num = a;
+	std::cout << "Int constructor called" << std::endl;
+	num = a * 256;
 };
 
 Fixed::Fixed(const float a)
 {
-	num = a;
+	std::cout << "Float constructor called" << std::endl;
+	num = a * 256.0;
 };
 
-std::ostream & Fixed::operator << (std::ostream& os, const Fixed &a)
+std::ostream & operator << (std::ostream& os, const Fixed &a)
 {
-	os << static_cast<float>(a.num);
+	os << a.getRawBits() / 256.0;
 	return (os);
 };
