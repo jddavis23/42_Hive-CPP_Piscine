@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:24:23 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/04 15:52:50 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/11/04 16:42:22 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class ClapTrap
 	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
+	void setTrap(std::string name, int hp, int ep, int ad);
 	void cost(void);
 	int possible();
 };

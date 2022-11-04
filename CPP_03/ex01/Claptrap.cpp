@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:24:20 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/04 15:56:29 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/11/04 16:45:24 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 ClapTrap::ClapTrap(std::string str)
 {
-	name = str;
-	hp = 10;
-	ep = 10;
-	ad = 0;
+	this->setTrap(str, 10, 10, 0);
+	// name = str;
+	// hp = 10;
+	// ep = 10;
+	// ad = 0;
 	std::cout << name << std::endl;
 };
 
@@ -88,4 +89,12 @@ int ClapTrap::possible()
 	}
 	else
 		return (1);
+};
+
+void ClapTrap::setTrap(std::string new_name, int hip, int eip, int aid)
+{
+	name = new_name;
+	hp = hip;
+	ep = eip;
+	ad = aid;
 };
