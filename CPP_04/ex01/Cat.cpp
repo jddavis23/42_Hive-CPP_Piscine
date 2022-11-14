@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:27:56 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/14 13:32:49 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/11/14 15:48:18 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 Cat::~Cat()
 {
+	delete b;
 	std::cout << this->getType() << " deconstructor" << std::endl;
 };

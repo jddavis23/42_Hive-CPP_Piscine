@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:54:32 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/14 13:32:38 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/11/14 15:48:29 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 Dog::~Dog()
 {
+	delete b;
 	std::cout << this->getType() << " deconstructor" << std::endl;
 };

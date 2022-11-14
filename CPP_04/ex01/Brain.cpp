@@ -6,18 +6,17 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:52:18 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/14 14:06:32 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/11/14 15:53:41 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
-// std::string Brain::getIdeas()
-// {
-// 	return ideas;
-// };
-
-// void Brain::setIdeas(std::string i)
-// {
-
-// };
+Brain::Brain()
+{
+	std::cout << "Brain created" << std::endl;
+};
+Brain::~Brain()
+{
+	std::cout << "Brain deconstructed" << std::endl;
+};

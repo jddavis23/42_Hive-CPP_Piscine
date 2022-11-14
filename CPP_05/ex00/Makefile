@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/14 13:18:13 by jdavis            #+#    #+#              #
-#    Updated: 2022/11/14 15:54:29 by jdavis           ###   ########.fr        #
+#    Created: 2022/11/14 16:27:42 by jdavis            #+#    #+#              #
+#    Updated: 2022/11/14 16:28:12 by jdavis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,7 @@ NAME = Polymorphism
 CC = c++ -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp
-SRC+= Cat.cpp
-SRC+= Dog.cpp
-SRC+= Animal.cpp
-SRC+= Brain.cpp
+SRC+= Bureaucrat.cpp
 
 all:	$(NAME)
 
