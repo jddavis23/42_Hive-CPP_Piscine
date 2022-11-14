@@ -1,14 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:34:10 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/14 11:08:14 by jdavis           ###   ########.fr       */
+/*   Created: 2022/11/14 13:52:18 by jdavis            #+#    #+#             */
+/*   Updated: 2022/11/14 14:06:32 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "Brain.hpp"
 
+// std::string Brain::getIdeas()
+// {
+// 	return ideas;
+// };
+
+// void Brain::setIdeas(std::string i)
+// {
+
+// };

@@ -1,14 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:34:10 by jdavis            #+#    #+#             */
-/*   Updated: 2022/11/14 11:08:14 by jdavis           ###   ########.fr       */
+/*   Created: 2022/11/14 11:39:58 by jdavis            #+#    #+#             */
+/*   Updated: 2022/11/14 13:42:33 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
 
+#ifndef CAT_HPP
+#define CAT_HPP
+
+#include "Animal.hpp"
+
+class Cat : public Animal
+{
+	public:
+	Cat(std::string  a = "Cat") : Animal(a) {}
+	~Cat(); 
+};
+
+#endif
