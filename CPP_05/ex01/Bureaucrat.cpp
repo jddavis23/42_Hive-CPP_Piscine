@@ -6,7 +6,7 @@
 /*   By: jdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 12:05:37 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/06 15:36:39 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:59:19 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,16 @@ void	Bureaucrat::decGrade()
 	}
 };
 
-void	Bureaucrat::signForm()
+void	Bureaucrat::signForm(Form &s)
 {
-
+	if (s.getReGrade() <= getGrade())
+		std::cout << this->getName() << " signed " << s.getName();
+	else
+	{
+		std::cout << this->getName() << " couldn't sign " << s.getName() << " because ";
+		s.beSigned(*this);
+		std::cout << std::endl;
+	}
 };
 
 std::ostream &operator<<(std::ostream & ostr, Bureaucrat & instance)
