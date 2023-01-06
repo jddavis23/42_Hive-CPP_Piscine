@@ -6,7 +6,7 @@
 /*   By: jdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 12:05:37 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/04 16:26:40 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/06 15:36:39 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,11 @@ void	Bureaucrat::decGrade()
 	{
 		std::cout << a.what() << std::endl;
 	}
+};
+
+void	Bureaucrat::signForm()
+{
+
 };
 
 std::ostream &operator<<(std::ostream & ostr, Bureaucrat & instance)
