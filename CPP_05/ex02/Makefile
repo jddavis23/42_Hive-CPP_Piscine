@@ -6,18 +6,17 @@
 #    By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 16:27:42 by jdavis            #+#    #+#              #
-#    Updated: 2023/01/09 12:06:14 by jdavis           ###   ########.fr        #
+#    Updated: 2023/01/09 11:10:38 by jdavis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Bureaucrat
+NAME = Polymorphism
 
 CC = c++ -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp
-SRC += Bureaucrat.cpp
+SRC+= Bureaucrat.cpp
 SRC += Form.cpp
-SRC += PresidentialPardonForm.cpp
 
 all:	$(NAME)
 
