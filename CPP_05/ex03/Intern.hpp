@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeffdavis <jeffdavis@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 13:25:09 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/10 14:36:12 by jeffdavis        ###   ########.fr       */
+/*   Created: 2023/01/10 14:48:46 by jeffdavis         #+#    #+#             */
+/*   Updated: 2023/01/10 16:17:21 by jeffdavis        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
-#include "PresidentialPardonForm.hpp"
+#ifndef INTERN_HPP
+#define INTERN_HPP
 
-int main()
+#include "Form.hpp"
+
+class Form;
+
+class Intern
 {
-	Bureaucrat	first("jeff", 2);
-	std::cout << first << std::endl;
-	PresidentialPardonForm tip("eps");
-	tip.beSigned(first);
-	first.executeForm(tip);
-	std::cout << tip.getSign() << std::endl;
-//	Bureaucrat	second("school", 0);
-//	first.incGrade();
-//	first.incGrade();
-	return (0);
+    public:
+    ~Intern();
+    Form * makeForm(std::string formName, std::string target);
+    // Form * makeShrub(std::string target);
+    // Form * makeRob(std::string target);
+    // Form * makePres(std::string target);
+    typedef Form * (*fptr)(std::string target);
+    
 };
+
+#endif

@@ -6,7 +6,7 @@
 #    By: jeffdavis <jeffdavis@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 16:27:42 by jdavis            #+#    #+#              #
-#    Updated: 2023/01/10 12:55:56 by jeffdavis        ###   ########.fr        #
+#    Updated: 2023/01/10 14:47:33 by jeffdavis        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = main.cpp
 SRC+= Bureaucrat.cpp
 SRC += Form.cpp
 SRC += PresidentialPardonForm.cpp
+SRC += Intern.cpp
 
 all:	$(NAME)
 
