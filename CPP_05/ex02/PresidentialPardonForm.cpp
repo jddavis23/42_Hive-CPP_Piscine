@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:38:19 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/09 12:22:15 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/10 12:18:03 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,8 @@ PresidentialPardonForm::~PresidentialPardonForm()
 
 };
 
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+{
+		if (!this->getSign() || executor.getGrade() <= this->getExGrade())
+			throw PresidentialPardonForm::G2();
+};

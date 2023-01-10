@@ -6,11 +6,11 @@
 #    By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 16:27:42 by jdavis            #+#    #+#              #
-#    Updated: 2023/01/09 11:10:38 by jdavis           ###   ########.fr        #
+#    Updated: 2023/01/10 12:20:08 by jdavis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Polymorphism
+NAME = Bureaucrat
 
 CC = c++ -Wall -Wextra -Werror -std=c++98
 

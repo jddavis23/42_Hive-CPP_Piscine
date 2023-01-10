@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 12:05:37 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/09 11:12:34 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/10 12:20:43 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,15 +121,29 @@ void	Bureaucrat::decGrade()
 
 void	Bureaucrat::signForm(Form &s)
 {
-	if (s.getReGrade() <= getGrade())
-		std::cout << this->getName() << " signed " << s.getName();
-	else
+	try
 	{
-		std::cout << this->getName() << " couldn't sign " << s.getName() << " because it did not have a high enough grade";
 		s.beSigned(*this);
-		std::cout << std::endl;
+		if (s.getReGrade() <= getGrade())
+		{
+			std::cout << this->getName() << " signed " << s.getName();
+		}
+		else
+		{
+			std::cout << this->getName() << " couldn't sign " << s.getName() << " because it did not have a high enough grade";
+			std::cout << std::endl;
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
 	}
 };
+
+// void	Bureaucrat::executeForm(Form const & form)
+// {
+	
+// };
 
 std::ostream &operator<<(std::ostream & ostr, Bureaucrat & instance)
 {
