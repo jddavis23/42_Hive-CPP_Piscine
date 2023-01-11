@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:18:43 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/11 13:05:44 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/11 13:36:09 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ class Convert
 	char getCVar() const;
 	float	getFVar() const;
 	double getDVar() const;
+	void setIVar(std::string str);
+	void setCVar(std::string str);
+	void	setFVar(std::string str);
+	void setDVar(std::string str);
 	t_flags detect(std::string str);
 	void	printTest(t_flags test);
 };
