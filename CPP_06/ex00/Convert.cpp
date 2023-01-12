@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:29:57 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/12 13:17:24 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/12 16:36:00 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_flags setFlags(t_flags test)
 	test.len = FALSE;
 	test.num = FALSE;
 	test.arr = NULL;
+	test.prec = FALSE;
 	return test;
 };
 
@@ -37,12 +38,12 @@ t_flags	chooseType(Convert & scal, t_flags test)
 		else if (test.end_f)
 		{
 			test.c = 'f';
-			scal.setFVar(test);
+			test = scal.setFVar(test);
 		}
 		else if (test.period)
 		{
 			test.c = 'd';
-			scal.setDVar(test);
+			test = scal.setDVar(test);
 		}
 		else if (!test.period)
 		{
@@ -83,12 +84,12 @@ void choosePrint(t_flags test, char c, Convert &a)
 			}
 			case 'f':
 			{
-				std::cout << a.getFVar(test) << std::endl;
+				std::cout << std::setprecision(test.prec) << a.getFVar(test) << "f" << std::endl;
 				return ;
 			}
 			case 'd':
 			{
-				std::cout << a.getDVar(test) << std::endl;
+				std::cout << std::setprecision(test.prec) << a.getDVar(test) << std::endl;
 				return ;
 			}
 		}
@@ -141,7 +142,7 @@ Convert::~Convert()
 
 int Convert::getIVar(t_flags test) const
 {
-	if (iVar > INT_MAX || iVar < INT_MIN || test.c == 'm')
+	if (iVar > INT_MAX || iVar < INT_MIN || test.c == 'm' || test.len > 10)
 		throw Convert::impossible();
 	return iVar;
 };
@@ -157,12 +158,8 @@ char Convert::getCVar(t_flags test) const
 
 float	Convert::getFVar(t_flags test) const
 {
-	if (fVar > FLT_MAX || fVar < FLT_MIN || test.c == 'm')
+	if (fVar > FLT_MAX || fVar < -FLT_MAX || test.c == 'm')
 	{
-		if (fVar > FLT_MAX)
-			std::cout << "PROB1\n";
-		if (fVar < FLT_MIN)
-			std::cout << "PROB2\n";
 		throw Convert::impossible();
 	}
 	return fVar;
@@ -170,7 +167,7 @@ float	Convert::getFVar(t_flags test) const
 
 double Convert::getDVar(t_flags test) const
 {
-	if (fVar > FLT_MAX || fVar < FLT_MIN || test.c == 'm')
+	if (fVar > DBL_MAX || fVar < -DBL_MIN || test.c == 'm')
 		throw Convert::impossible();
 	return dVar;
 };
@@ -216,30 +213,50 @@ void	Convert::setIVar(t_flags test)
 {
 	iVar = std::atoll(test.arr);
 	cVar = (char)iVar;
-	fVar = static_cast< float >(iVar);
-	dVar = (double)iVar;
+	fVar = static_cast< float >(iVar) * 1.0;
+	dVar = (double)iVar  * 1.0;
 };
 
 void	Convert::setCVar(t_flags test)
 {
 	cVar = test.arr[0];
 	iVar = (int)cVar;
-	fVar = (float)cVar;
-	dVar = (double)cVar;
+	fVar = (float)cVar * 1.0;
+	dVar = (double)cVar * 1.0;
 };
 
-void	Convert::setFVar(t_flags test)
+t_flags	Convert::setFVar(t_flags test)
 {
+	test = getPrecision(test);
 	fVar = std::atof(test.arr);
 	cVar = (char)fVar;
 	iVar = (int)fVar;
 	dVar = (double)fVar;
+	return test;
 };
 
-void	Convert::setDVar(t_flags test)
+t_flags	Convert::setDVar(t_flags test)
 {
+	test = getPrecision(test);
 	dVar = std::atof(test.arr);
 	cVar = (char)dVar;
 	iVar = (int)dVar;
 	fVar = (double)dVar;
+	return test;
+};
+
+t_flags	getPrecision(t_flags test)
+{
+	char	*i;
+	int		count;
+
+	i = strchr(test.arr, '.');
+	count = 0;
+	while (*i != '\0' && *i != 'f')
+	{
+		++count;
+		++i;
+	}
+	test.prec = --count;
+	return test;
 };

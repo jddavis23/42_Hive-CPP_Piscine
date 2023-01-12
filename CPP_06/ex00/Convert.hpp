@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:18:43 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/12 13:01:29 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/12 16:17:31 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <cctype>
 #include <climits>
 #include <cfloat>
+#include <iomanip>
+#include <limits>
 
 typedef struct s_flags
 {
@@ -30,10 +32,7 @@ typedef struct s_flags
 	char	whichSign;
 	int		num;
 	char	c;
-	char	iC;
-	char	cC;
-	char	fC;
-	char	dC;
+	int		prec;
 	int		len;
 	char	*arr;
 }	t_flags;
@@ -49,8 +48,8 @@ class Convert
 	protected:
 	long long int iVar;
 	char cVar;
-	float fVar;
-	double dVar;
+	double fVar;
+	long double dVar;
 	public:
 	Convert();
 	Convert(const Convert &a);
@@ -62,8 +61,8 @@ class Convert
 	double getDVar(t_flags test) const;
 	void setIVar(t_flags test);
 	void setCVar(t_flags test);
-	void	setFVar(t_flags test);
-	void setDVar(t_flags test);
+	t_flags	setFVar(t_flags test);
+	t_flags setDVar(t_flags test);
 	t_flags detect(std::string str);
 	void	printTest(t_flags test, Convert &a);
 	void	castVal(void *b, void *a, char c);
@@ -86,5 +85,6 @@ class Convert
 };
 
 t_flags	chooseType(Convert & scal, t_flags test);
+t_flags	getPrecision(t_flags test);
 
 #endif
