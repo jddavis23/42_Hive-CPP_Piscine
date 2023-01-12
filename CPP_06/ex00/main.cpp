@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:57:54 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/11 12:20:31 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/12 11:55:42 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main (int argc, char *argv[])
 		return 1;
 	}
 	test = scal.detect(argv[TRUE]);
-	scal.printTest(test);
+	test = chooseType(scal, test);
+	scal.printTest(test, scal);
 	return 0;
 }

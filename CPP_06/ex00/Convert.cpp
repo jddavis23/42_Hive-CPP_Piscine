@@ -6,7 +6,7 @@
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:29:57 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/11 13:36:10 by jdavis           ###   ########.fr       */
+/*   Updated: 2023/01/12 13:17:24 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,33 @@ t_flags setFlags(t_flags test)
 	test.whichSign = FALSE;
 	test.len = FALSE;
 	test.num = FALSE;
+	test.arr = NULL;
 	return test;
 };
 
-t_flags	chooseType(Convert & scal, t_flags test, std::string str)
+t_flags	chooseType(Convert & scal, t_flags test)
 {
 	if (test.num && !test.chars)
 	{
 		if (test.sign > 1 || test.period > 1 || test.sign > 1)
+		{
 			test.c = 'm';
+		}
 		else if (test.end_f)
+		{
 			test.c = 'f';
+			scal.setFVar(test);
+		}
 		else if (test.period)
+		{
 			test.c = 'd';
+			scal.setDVar(test);
+		}
 		else if (!test.period)
+		{
 			test.c = 'i';
+			scal.setIVar(test);
+		}
 	}
 	else if (!test.num && test.chars)
 	{
@@ -44,45 +56,59 @@ t_flags	chooseType(Convert & scal, t_flags test, std::string str)
 			test.c = 'm';
 		else
 		{
-			scal.setCVar(str);
 			test.c = 'c';
+			scal.setCVar(test);
 		}
 	}
 	else
 		test.c = 'm';
-
+	return test;
 };
 
-std::string choosePrint(t_flags test, char c)
+void choosePrint(t_flags test, char c, Convert &a)
 {
-	switch (c)
+	try
 	{
-  		case 'c':
+		switch (c)
 		{
-
-		}
-		case 'i':
-		{
-
-		}
-		case 'f':
-		{
-
-		}
-		case 'd':
-		{
-
+			case 'c':
+			{
+				std::cout << a.getCVar(test) << std::endl;
+				return ;
+			}
+			case 'i':
+			{
+				std::cout << a.getIVar(test) << std::endl;
+				return ;
+			}
+			case 'f':
+			{
+				std::cout << a.getFVar(test) << std::endl;
+				return ;
+			}
+			case 'd':
+			{
+				std::cout << a.getDVar(test) << std::endl;
+				return ;
+			}
 		}
 	}
-	return "yes\n";
+	catch (std::exception &a)
+	{
+		std::cout << a.what();
+	}
 };
 
-void	Convert::printTest(t_flags test)
+void	Convert::printTest(t_flags test, Convert &a)
 {
-	std::cout << "char: " << choosePrint(test, 'c');
-	std::cout << "int: " << choosePrint(test, 'i');
-	std::cout << "float: " << choosePrint(test, 'f');
-	std::cout << "double: " << choosePrint(test, 'd');
+	std::cout << "char: ";
+	choosePrint(test, 'c', a);
+	std::cout << "int: ";
+	choosePrint(test, 'i', a);
+	std::cout << "float: ";
+	choosePrint(test, 'f', a);
+	std::cout << "double: ";
+	choosePrint(test, 'd', a);
 };
 
 Convert::Convert()
@@ -113,23 +139,39 @@ Convert::~Convert()
 {
 };
 
-int Convert::getIVar() const
+int Convert::getIVar(t_flags test) const
 {
+	if (iVar > INT_MAX || iVar < INT_MIN || test.c == 'm')
+		throw Convert::impossible();
 	return iVar;
 };
 
-char Convert::getCVar() const
+char Convert::getCVar(t_flags test) const
 {
+	if (test.c == 'm')
+		throw Convert::impossible();
+	else if (!std::isprint(cVar))
+		throw Convert::unprintable();
 	return cVar;
 };
 
-float	Convert::getFVar() const
+float	Convert::getFVar(t_flags test) const
 {
+	if (fVar > FLT_MAX || fVar < FLT_MIN || test.c == 'm')
+	{
+		if (fVar > FLT_MAX)
+			std::cout << "PROB1\n";
+		if (fVar < FLT_MIN)
+			std::cout << "PROB2\n";
+		throw Convert::impossible();
+	}
 	return fVar;
 };
 
-double Convert::getDVar() const
+double Convert::getDVar(t_flags test) const
 {
+	if (fVar > FLT_MAX || fVar < FLT_MIN || test.c == 'm')
+		throw Convert::impossible();
 	return dVar;
 };
 
@@ -139,6 +181,9 @@ t_flags Convert::detect(std::string str)
 	t_flags test;
 	
 	test = setFlags(test);
+	test.arr = new char[str.length() + 1];
+
+	strcpy(test.arr, str.c_str());
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -167,37 +212,34 @@ t_flags Convert::detect(std::string str)
 	return test;
 };
 
-void	Convert::setIVar(std::string str)
+void	Convert::setIVar(t_flags test)
 {
-	char *temp = new char[str.length() + 1];
-
-	temp = strcpy(temp, str.c_str());
-
-	iVar = std::atoi(temp);
-	delete temp;
+	iVar = std::atoll(test.arr);
+	cVar = (char)iVar;
+	fVar = static_cast< float >(iVar);
+	dVar = (double)iVar;
 };
 
-void	Convert::setCVar(std::string str)
+void	Convert::setCVar(t_flags test)
 {
-	cVar = str[0];
+	cVar = test.arr[0];
+	iVar = (int)cVar;
+	fVar = (float)cVar;
+	dVar = (double)cVar;
 };
 
-void	Convert::setFVar(std::string str)
+void	Convert::setFVar(t_flags test)
 {
-	char *temp = new char[str.length() + 1];
-
-	temp = strcpy(temp, str.c_str());
-
-	fVar = std::atof(temp);
-	delete temp;
+	fVar = std::atof(test.arr);
+	cVar = (char)fVar;
+	iVar = (int)fVar;
+	dVar = (double)fVar;
 };
 
-void	Convert::setDVar(std::string str)
+void	Convert::setDVar(t_flags test)
 {
-	char *temp = new char[str.length() + 1];
-
-	temp = strcpy(temp, str.c_str());
-
-	dVar = std::atof(temp);
-	delete temp;
+	dVar = std::atof(test.arr);
+	cVar = (char)dVar;
+	iVar = (int)dVar;
+	fVar = (double)dVar;
 };
