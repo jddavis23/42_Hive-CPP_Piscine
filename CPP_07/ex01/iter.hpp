@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jdavis <jdavis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 12:32:07 by jdavis            #+#    #+#             */
-/*   Updated: 2023/01/17 15:11:27 by jdavis           ###   ########.fr       */
+/*   Created: 2023/01/17 15:13:59 by jdavis            #+#    #+#             */
+/*   Updated: 2023/01/17 16:04:07 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#ifndef ITER_HPP
+#define ITER_HPP
 
 #include <iostream>
 
-template<typename T> void swap(T &a, T &b)
+template <class T, size_t N> void max(T (&x)[N], std::size_t sz, void (*par)(const T &x))
 {
-	T c;
-	c = b;
-	b = a;
-	a = c;
+	size_t i;
+	
+	i = 0;
+	while (i < sz)
+	{
+		par(x[i]);
+		++i;
+	}
 };
 
-template<typename T> T min(T &a, T &b)
+template<typename T>void ft_print(T &i)
 {
-	return (a >= b ? b : a);
+	if (i)
+		std::cout << "TRUE\n";
 };
 
-template<typename T> T max(T &a, T &b)
-{
-	return (a > b ? a : b);
-};
 
 #endif
